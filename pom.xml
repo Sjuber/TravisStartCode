@@ -105,7 +105,7 @@
                 <version>2.2</version>
                 <configuration>          
                     <server>TomcatServer</server>
-                    <url>nikolajsites.dk</url>
+                    <url>https://nikolajsites.dk/manager/html</url>
                     <username>Tommy1887</username>
                     <password>TheCat1864</password>
                     <update>true</update>    
