@@ -105,9 +105,9 @@
                 <version>2.2</version>
                 <configuration>          
                     <server>TomcatServer</server>
-                    <url>${remote.server}</url>
-                    <username>${remote.user}</username>
-                    <password>${remote.password}</password>
+                    <url>nikolajsites.dk</url>
+                    <username>Tommy1887</username>
+                    <password>TheCat1864</password>
                     <update>true</update>    
                 </configuration>  
             </plugin>          
