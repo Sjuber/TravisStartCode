@@ -1,6 +1,6 @@
 package rest;
 
-import entities.RenameMe;
+import entities.Movie;
 import utils.EMF_Creator;
 import io.restassured.RestAssured;
 import static io.restassured.RestAssured.given;
@@ -22,11 +22,11 @@ import org.junit.jupiter.api.Test;
 //Uncomment the line below, to temporarily disable this test
 //@Disabled
 
-public class RenameMeResourceTest {
+public class MovieResourceTest {
 
     private static final int SERVER_PORT = 7777;
     private static final String SERVER_URL = "http://localhost/api";
-    private static RenameMe r1, r2;
+    private static Movie r1, r2;
 
     static final URI BASE_URI = UriBuilder.fromUri(SERVER_URL).port(SERVER_PORT).build();
     private static HttpServer httpServer;
@@ -64,11 +64,13 @@ public class RenameMeResourceTest {
     @BeforeEach
     public void setUp() {
         EntityManager em = emf.createEntityManager();
-        r1 = new RenameMe("Some txt", "More text");
-        r2 = new RenameMe("aaa", "bbb");
+        String[] array1 = {"one", "two", "three"};
+        String[] array2 = {"four", "five", "six"};
+        r1 = new Movie(1234, "More text", array1);
+        r2 = new Movie(5678, "bbb", array2);
         try {
             em.getTransaction().begin();
-            em.createNamedQuery("RenameMe.deleteAllRows").executeUpdate();
+            em.createNamedQuery("Movie.deleteAllRows").executeUpdate();
             em.persist(r1);
             em.persist(r2);
             em.getTransaction().commit();
@@ -77,30 +79,30 @@ public class RenameMeResourceTest {
         }
     }
 
-    @Test
-    public void testServerIsUp() {
-        System.out.println("Testing is server UP");
-        given().when().get("/xxx").then().statusCode(200);
-    }
+//    @Test
+//    public void testServerIsUp() {
+//        System.out.println("Testing is server UP");
+//        given().when().get("/xxx").then().statusCode(200);
+//    }
 
     //This test assumes the database contains two rows
-    @Test
-    public void testDummyMsg() throws Exception {
-        given()
-                .contentType("application/json")
-                .get("/xxx/").then()
-                .assertThat()
-                .statusCode(HttpStatus.OK_200.getStatusCode())
-                .body("msg", equalTo("Hello World"));
-    }
+//    @Test
+//    public void testDummyMsg() throws Exception {
+//        given()
+//                .contentType("application/json")
+//                .get("/xxx/").then()
+//                .assertThat()
+//                .statusCode(HttpStatus.OK_200.getStatusCode())
+//                .body("msg", equalTo("Hello World"));
+//    }
 
-    @Test
-    public void testCount() throws Exception {
-        given()
-                .contentType("application/json")
-                .get("/xxx/count").then()
-                .assertThat()
-                .statusCode(HttpStatus.OK_200.getStatusCode())
-                .body("count", equalTo(2));
-    }
+//    @Test
+//    public void testCount() throws Exception {
+//        given()
+//                .contentType("application/json")
+//                .get("/xxx/count").then()
+//                .assertThat()
+//                .statusCode(HttpStatus.OK_200.getStatusCode())
+//                .body("count", equalTo(2));
+//    }
 }
